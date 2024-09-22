@@ -14,6 +14,8 @@ const initialState = {
   highscore: 0,
 };
 
+const API_URL = "https://nakekkasit.github.io/react-quiz-data/questions.json";
+
 function reducer(state, action) {
   switch (action.type) {
     case "recieveData":
@@ -66,9 +68,12 @@ function QuizProvider({ children }) {
   useEffect(() => {
     async function fetchQuestions() {
       try {
-        const res = await fetch("http://localhost:9000/questions");
+        // const res = await fetch("http://localhost:9000/questions");
+        const res = await fetch(API_URL);
+        console.log(res);
         const questions = await res.json();
-        dispatch({ type: "recieveData", payload: questions });
+        console.log(questions);
+        dispatch({ type: "recieveData", payload: questions.questions });
       } catch (error) {
         dispatch({ type: "dataFailed" });
       }

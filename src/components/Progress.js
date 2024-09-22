@@ -4,6 +4,7 @@ import { QuizContext } from "../context/QuizContext";
 function Progress() {
   const { questions, points, questionIndex, progress } =
     useContext(QuizContext);
+  console.log(questions);
   const numQuestions = questions.length;
   const totalPoints = questions.reduce(
     (acc, question) => acc + question.points,
